@@ -7,7 +7,6 @@ import random
 from dataclasses import dataclass
 from typing import Dict, List, Tuple, Any, Optional
 from collections import defaultdict, deque
-import requests
 
 import numpy as np
 from tqdm import tqdm
@@ -17,12 +16,15 @@ import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 from transformers import AutoTokenizer, AutoModel
 
+import requests
+
 
 # =========================
 # User Config
 # =========================
+API_KEY = "AQ.Ab8RN6JUb82VrSIvjvHxX1wie7AH4c-SzUSd6pGwiHcCbRUt3g"
+
 GEMINI_MODEL = "gemini-2.0-flash-lite-001"
-API_KEY_ENV_VAR = "GEMINI_API_KEY"
 
 ROOT_DIR = "Amazon_products"
 CLASSES_PATH = os.path.join(ROOT_DIR, "classes.txt")
@@ -275,15 +277,6 @@ def get_leaf_nodes(children_of: Dict[int, set], num_classes: int) -> List[int]:
 # =========================
 # Vertex AI 호출
 # =========================
-def _get_api_key() -> str:
-    key = os.environ.get(API_KEY_ENV_VAR)
-    if not key:
-        raise RuntimeError(
-            f"API key not found. Please set environment variable {API_KEY_ENV_VAR} before running."
-        )
-    return key
-
-
 def vertex_generate_content(prompt: str, temperature: float = 0.2, max_output_tokens: int = 2048) -> str:
     """
     Express mode non-stream endpoint:
@@ -295,7 +288,7 @@ def vertex_generate_content(prompt: str, temperature: float = 0.2, max_output_to
 
     url = (
         f"https://aiplatform.googleapis.com/v1/publishers/google/models/{GEMINI_MODEL}:generateContent"
-        f"?key={_get_api_key()}"
+        f"?key={API_KEY}"
     )
 
     payload = {

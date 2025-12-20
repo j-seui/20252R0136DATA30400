@@ -1,0 +1,16 @@
+    // "You are given a product review classification label.\n"
+    // "Write a short, concrete description of what kinds of products/reviews belong to this label.\n"
+    // "Keep it concise but specific.\n\n"
+    // f"Label ID: {cid}\n"
+    // f"Label Name: {cname}\n"
+    // f"Related keywords: {kw_str}\n\n"
+    // "Return ONLY the description (one paragraph)."
+    // lines.append("You are a classifier. For each item, choose the best label ID from the candidates.\n")
+    // lines.append("Return STRICT JSON only: a list of objects with keys {idx, cid}.\n")
+    // lines.append("Do not include any extra text.\n\n")
+
+    // for idx, text, cands in batch_items:
+    //     cand_str = "; ".join([f"{cid}:{cname}" for cid, cname in cands])
+    //     lines.append(f"idx={idx}\nreview={text}\ncandidates={cand_str}\n")
+
+    // lines.append("\nJSON format example: [{\"idx\": 12, \"cid\": 5}, ...]")
