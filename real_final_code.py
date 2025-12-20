@@ -22,7 +22,9 @@ import requests
 # =========================
 # User Config
 # =========================
-API_KEY = "AQ.Ab8RN6JUb82VrSIvjvHxX1wie7AH4c-SzUSd6pGwiHcCbRUt3g"
+API_KEY = os.environ.get("GEMINI_API_KEY")
+if not API_KEY:
+    raise EnvironmentError("Set GEMINI_API_KEY environment variable before running.")
 
 GEMINI_MODEL = "gemini-2.0-flash-lite-001"
 
